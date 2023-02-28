@@ -14,11 +14,25 @@ function addtoLocal(e){
     }
     //localStorage.setItem(Detail.email, JSON.stringify(Detail))
     axios.post("https://crudcrud.com/api/2ca5b5fd7dc847c5bb941001c6040046/AppointmentData",Detail)
-    .then((response)=>{showUseronScreen(response)})
+    .then((response)=>{
+       showUseronScreen(response.data) 
+    })
     .catch((err)=>{console.log(err)})
     //create this name function and give obj wala parameter as value;
      //showUseronScreen(Detail);
 }
+
+window.addEventListener("DOMContentLoaded",()=>{
+    axios.get("https://crudcrud.com/api/2ca5b5fd7dc847c5bb941001c6040046/AppointmentData")
+    .then((response)=>{
+        for(var i=0; i<response.data.length; i++){
+            showUseronScreen(response.data[i]);
+        }
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+})
 
 function  showUseronScreen (Detail){
     //fetch the unodered list <ul>//
